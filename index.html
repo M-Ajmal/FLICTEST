@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajmal Mansoor | Data Science & Web Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B8941F;
+            --black: #0A0A0A;
+            --dark-gray: #1A1A1A;
+            --light-gray: #2A2A2A;
+            --white: #FFFFFF;
+            --off-white: #F5F5F5;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--black);
+            color: var(--off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+            border-bottom: 2px solid var(--gold);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 50%, var(--black) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .hero-text h2 {
+            font-size: 1.8rem;
+            color: var(--off-white);
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .hero-text .location {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--off-white);
+            margin-bottom: 30px;
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: 2px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Georgia', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-gold);
+            border-color: var(--dark-gold);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 50px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .about {
+            background: var(--dark-gray);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 2;
+            text-align: center;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-card {
+            background: var(--dark-gray);
+            padding: 40px 30px;
+            border: 2px solid var(--light-gray);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card h3 {
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            color: var(--off-white);
+        }
+
+        .skill-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--light-gray);
+            transition: padding-left 0.3s;
+        }
+
+        .skill-card ul li:hover {
+            padding-left: 10px;
+            color: var(--gold);
+        }
+
+        .skill-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .quote-section {
+            background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .quote-section blockquote {
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--gold);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .quote-section cite {
+            display: block;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: var(--off-white);
+            font-style: normal;
+        }
+
+        .experience {
+            background: var(--black);
+        }
+
+        .experience-card {
+            background: var(--dark-gray);
+            padding: 40px;
+            border-left: 4px solid var(--gold);
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .experience-card:hover {
+            transform: translateX(10px);
+            box-shadow: -5px 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .experience-card h3 {
+            color: var(--gold);
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .experience-card .role {
+            font-size: 1.2rem;
+            color: var(--off-white);
+            margin-bottom: 15px;
+        }
+
+        .experience-card p {
+            color: var(--off-white);
+            line-height: 1.8;
+        }
+
+        footer {
+            background: var(--dark-gray);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 2px solid var(--gold);
+        }
+
+        footer p {
+            color: var(--off-white);
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--dark-gold);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text h2 {
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">AM</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Ajmal Mansoor</h1>
+                <h2>Data Science Undergraduate | Web Developer | Managing Director</h2>
+                <div class="location">📍 Sri Lanka</div>
+                <p>Passionate about solving real-world problems through technology — combining analytical thinking with creative design. Building intelligent systems that make an impact.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="#skills" class="btn">View Skills</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>I'm a passionate and motivated individual currently pursuing a <span class="highlight">BSc (Hons) in Data Science</span> at NSBM Green University. I enjoy solving real-world problems through technology — combining analytical thinking with creative design.</p>
+                
+                <p>My interests span across <span class="highlight">data analytics</span>, <span class="highlight">web development</span> (React, MERN stack), and <span class="highlight">cloud-based applications</span> using AWS.</p>
+                
+                <p>Beyond academics, I also serve as the <span class="highlight">Managing Director of Derana Construction</span>, a company with over 8 years of excellence in the construction industry. This experience has strengthened my leadership, project management, and decision-making skills.</p>
+                
+                <p>I'm driven by curiosity and a desire to keep learning — whether it's mastering PySpark for big data processing, refining user interfaces in React, or building intelligent systems that make an impact.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Key Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Data Science</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>R Programming</li>
+                        <li>PySpark</li>
+                        <li>Machine Learning</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Web Development</h3>
+                    <ul>
+                        <li>React JS</li>
+                        <li>MERN Stack</li>
+                        <li>Tailwind CSS</li>
+                        <li>WordPress</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Cloud & AWS</h3>
+                    <ul>
+                        <li>AWS Lambda</li>
+                        <li>Amazon S3</li>
+                        <li>AWS Redshift</li>
+                        <li>AWS Glue</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Leadership</h3>
+                    <ul>
+                        <li>Team Management</li>
+                        <li>Strategic Planning</li>
+                        <li>Project Management</li>
+                        <li>Decision Making</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <div class="container">
+            <blockquote>
+                "Dream big, work smart, and build things that matter."
+            </blockquote>
+            <cite>— Ajmal Mansoor</cite>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-card">
+                <h3>Derana Construction</h3>
+                <div class="role">Managing Director</div>
+                <p>Leading a construction company with over 8 years of excellence in the industry. Managing strategic operations, team leadership, and project execution. This role has honed my skills in decision-making, resource management, and delivering high-quality results under pressure.</p>
+            </div>
+            <div class="experience-card">
+                <h3>NSBM Green University</h3>
+                <div class="role">Data Science Student</div>
+                <p>Pursuing BSc (Hons) in Data Science with focus on machine learning, big data analytics, cloud computing, and modern web technologies. Building practical solutions through academic projects and continuous learning.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="about-content">
+                <p>I'm always open to discussing new opportunities, collaborations, or innovative projects. Whether you're interested in data science solutions, web development, or just want to connect — feel free to reach out!</p>
+                <div class="cta-buttons" style="justify-content: center; margin-top: 30px;">
+                    <a href="mailto:ajmal@example.com" class="btn btn-primary">Email Me</a>
+                    <a href="#" class="btn">LinkedIn</a>
+                    <a href="#" class="btn">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Watapuluwe Gedara Mohamed Ajmal Mansoor. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
